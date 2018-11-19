@@ -26,10 +26,11 @@ public class DatabaseResourceBundleControl extends ResourceBundle.Control {
 
 	static final String FORMAT = "bundle.database";
 
+	// should it be 3600000 (1 hour)?
 	// java.util.ResourceBundle.Control.getTimeToLive's default is TTL_NO_EXPIRATION_CONTROL
-	private static final long DEFAULT_TTL = TTL_NO_EXPIRATION_CONTROL; // should it be 3600000 (1 hour) ?
+	private static final long DEFAULT_TTL = TTL_NO_EXPIRATION_CONTROL;
 
-	private static final List<String> ACCEPTABLE_FORMATS = Collections.unmodifiableList(Arrays.asList(FORMAT));
+	private static final List<String> ACCEPTABLE_FORMATS = Collections.singletonList(FORMAT);
 
 	private final long ttl;
 
@@ -62,6 +63,9 @@ public class DatabaseResourceBundleControl extends ResourceBundle.Control {
 		return ACCEPTABLE_FORMATS;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public ResourceBundle newBundle(String baseName, Locale locale, String format, ClassLoader loader, boolean reload) {
 
@@ -79,11 +83,17 @@ public class DatabaseResourceBundleControl extends ResourceBundle.Control {
 		return lookup.isEmpty() ? null : new DatabaseResourceBundle(lookup);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public long getTimeToLive(@NonNull String baseName, @NonNull Locale locale) {
 		return ttl;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public boolean needsReload(String baseName, Locale locale, String format, ClassLoader loader, @NonNull ResourceBundle bundle, long loadTime) {
 		return this.bundleContentLoaderStrategy.needsReload(baseName, locale, format, bundle, loadTime);

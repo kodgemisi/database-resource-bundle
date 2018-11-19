@@ -47,11 +47,11 @@ public interface BundleContentLoaderStrategy {
 	 *
 	 * <p>This method is called from {@link DatabaseResourceBundleControl#needsReload}</p>
 	 *
-	 * @param baseName
-	 * @param locale
-	 * @param format
-	 * @param bundle
-	 * @param loadTime
+	 * @param baseName the base bundle name of the resource bundle, a fully qualified class name
+	 * @param locale the locale for which the resource bundle should be instantiated
+	 * @param format the resource bundle format to be loaded
+	 * @param bundle the ClassLoader to use to load the bundle however since this resource is backed by a database this parameter is not used and can be null.
+	 * @param loadTime the time when bundle was loaded and put in the cache
 	 * @return true if the contents should be reloaded from the database (there is any row in database table which is inserted or updated after {@code loadTime}), false otherwise.
 	 */
 	boolean needsReload(String baseName, Locale locale, String format, @NonNull ResourceBundle bundle, long loadTime);

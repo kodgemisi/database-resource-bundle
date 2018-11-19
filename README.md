@@ -47,6 +47,30 @@ ResourceBundle rb = ResourceBundle.getBundle("messages", locale, control);
 rb.getString("demo.username")
 ```
 
+## Using `DefaultBundleContentLoaderStrategy`
+
+`DefaultBundleContentLoaderStrategy` uses a prepared statement to load resource content.
+
+By default it assumes you have a table in your database which 
+is created via `database-resource-bundle.jar/create.sql`. Hence uses following queries:
+
+```
+DEFAULT_LOAD_QUERY = "SELECT DISTINCT b.key, b.value FROM " + DEFAULT_TABLE_NAME + " b WHERE name = ? AND language = ? AND country = ? AND variant = ? ;"
+DEFAULT_NEEDS_RELOAD_QUERY = "SELECT MAX(last_modified) FROM " + DEFAULT_TABLE_NAME + " b WHERE name = ? ;";
+```
+
+`DEFAULT_TABLE_NAME` is `Bundle` and coming from `BundleContentLoaderStrategy.DEFAULT_TABLE_NAME`.
+
+### Customizations: Using a different Table name or completely different Table structure
+
+You can override those queries by using `DefaultBundleContentLoaderStrategy`'s 3-parameter constructor. When you do this, you can use any database 
+table structure or name as you like as long as you conform to expected return values of the queries.
+
+Expected return values of the `load query` is a key-value string pair.
+
+Expected return values of the `needs reload query` is a long value which represents the epoch milliseconds of latest change on the table.
+
+
 ## Usage in Spring Boot
 
 There is a Spring Boot starter which configures a `message source` backed by `DatabaseResourceBundle`.

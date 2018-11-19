@@ -43,14 +43,16 @@ public interface BundleContentLoaderStrategy {
 	Map<String, Object> loadFromDatabase(@NonNull String bundleName);
 
 	/**
-	 * Checks if there is any row in database table which is inserted or updated after {@code loadTime}.
+	 * <p>Checks if there is any row in database table which is inserted or updated after {@code loadTime}.</p>
+	 *
+	 * <p>This method is called from {@link DatabaseResourceBundleControl#needsReload}</p>
 	 *
 	 * @param baseName
 	 * @param locale
 	 * @param format
 	 * @param bundle
 	 * @param loadTime
-	 * @return true if the contents should be reloaded from the database, false otherwise.
+	 * @return true if the contents should be reloaded from the database (there is any row in database table which is inserted or updated after {@code loadTime}), false otherwise.
 	 */
 	boolean needsReload(String baseName, Locale locale, String format, @NonNull ResourceBundle bundle, long loadTime);
 

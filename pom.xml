@@ -19,6 +19,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
 
         <maven-source-plugin.version>3.0.1</maven-source-plugin.version>
+        <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
         <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
 
         <lombok.version>1.16.20</lombok.version>
@@ -63,6 +64,22 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${maven-javadoc-plugin.version}</version>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <show>private</show>
+                </configuration>
             </plugin>
         </plugins>
     </build>

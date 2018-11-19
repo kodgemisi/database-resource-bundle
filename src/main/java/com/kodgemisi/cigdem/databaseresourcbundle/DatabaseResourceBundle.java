@@ -42,6 +42,9 @@ public class DatabaseResourceBundle extends ResourceBundle {
 	public static ResourceBundle getBundle(String baseName, Locale locale, DataSource dataSource) {
 		return new DatabaseResourceBundleControl(new DefaultBundleContentLoaderStrategy(dataSource)).newBundle(baseName, locale,
 																											   DatabaseResourceBundleControl.FORMAT,
+																											   // Using following instead of Thread.currentThread().getContextClassLoader()
+																											   //because may return null indicating that we need to use a fallback class loader.
+																											   // I don't think we really need that much ceremony.
 																											   DatabaseResourceBundle.class.getClassLoader(),
 																											   true);
 	}

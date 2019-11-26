@@ -80,6 +80,11 @@ public class DatabaseResourceBundleControl extends ResourceBundle.Control {
 
 		final String bundleName = super.toBundleName(baseName, locale);
 		final Map<String, Object> lookup = loadFromDatabase(bundleName);
+
+		if (log.isTraceEnabled()) {
+			log.trace("New bundle with size '{}' for  baseName '{}', locale '{}', format '{}', reload '{}'", lookup.size(), baseName, locale, format, reload);
+		}
+
 		return lookup.isEmpty() ? null : new DatabaseResourceBundle(lookup);
 	}
 
@@ -96,7 +101,13 @@ public class DatabaseResourceBundleControl extends ResourceBundle.Control {
 	 */
 	@Override
 	public boolean needsReload(String baseName, Locale locale, String format, ClassLoader loader, @NonNull ResourceBundle bundle, long loadTime) {
-		return this.bundleContentLoaderStrategy.needsReload(baseName, locale, format, bundle, loadTime);
+		final boolean needsReload = this.bundleContentLoaderStrategy.needsReload(baseName, locale, format, bundle, loadTime);
+
+		if (log.isTraceEnabled()) {
+			log.trace("Needs reload is '{}' for baseName '{}', locale '{}', format '{}', bundle '{}', loadTime '{}'", needsReload, baseName, locale, format, bundle, loadTime);
+		}
+
+		return needsReload;
 	}
 
 	/**

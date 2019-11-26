@@ -59,7 +59,7 @@ public class DatabaseResourceBundle extends ResourceBundle {
 
 	@Override
 	public Enumeration<String> getKeys() {
-		ResourceBundle parent = this.parent;
+		final ResourceBundle parent = this.parent;
 		return new ResourceBundleEnumeration(lookup.keySet(), parent != null ? parent.getKeys() : null);
 	}
 

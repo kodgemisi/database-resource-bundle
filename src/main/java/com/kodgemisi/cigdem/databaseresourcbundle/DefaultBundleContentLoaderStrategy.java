@@ -97,6 +97,11 @@ public class DefaultBundleContentLoaderStrategy implements BundleContentLoaderSt
 
 	@Override
 	public Map<String, Object> loadFromDatabase(String bundleName) {
+
+		if (log.isTraceEnabled()) {
+			log.trace("Loading from database for bundle with baseName '{}'", bundleName);
+		}
+
 		final BundleMetaData bundleMetaData = new BundleMetaData(bundleName);
 
 		try (final Connection connection = dataSource.getConnection();
@@ -108,7 +113,7 @@ public class DefaultBundleContentLoaderStrategy implements BundleContentLoaderSt
 			preparedStatement.setString(4, bundleMetaData.variant);
 
 			if (log.isTraceEnabled()) {
-				log.trace("Loading content for {} with query {}", bundleName, preparedStatement);
+				log.trace("Loading content for bundle baseName '{}' with query '{}'", bundleName, preparedStatement);
 			}
 
 			try (final ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -118,6 +123,10 @@ public class DefaultBundleContentLoaderStrategy implements BundleContentLoaderSt
 					final String key = resultSet.getString("key");
 					final String value = resultSet.getString("value");
 					resultMap.put(key, value);
+				}
+
+				if (log.isDebugEnabled()) {
+					log.debug("Bundle with baseName '{}' is loaded from database. Size {}", bundleName, resultMap.size());
 				}
 
 				return resultMap;
@@ -138,7 +147,7 @@ public class DefaultBundleContentLoaderStrategy implements BundleContentLoaderSt
 			preparedStatement.setString(1, baseName);
 
 			if (log.isTraceEnabled()) {
-				log.trace("Checking if reload needed content for {} {} with query {}", baseName, locale, preparedStatement);
+				log.trace("Checking if reload needed for baseName '{}' and locale '{}' with query '{}'", baseName, locale, preparedStatement);
 			}
 
 			try (final ResultSet resultSet = preparedStatement.executeQuery()) {

@@ -9,7 +9,7 @@
  * the Mozilla Public License, v. 2.0.
  */
 
-package com.kodgemisi.cigdem.databaseresourcbundle;
+package com.kodgemisi.summer.databaseresourcbundle;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -22,13 +22,13 @@ import java.util.*;
 
 /**
  * <p>
- * This class loads the content of a {@link com.kodgemisi.cigdem.databaseresourcbundle.DatabaseResourceBundle} from {@link #DEFAULT_TABLE_NAME}
+ * This class loads the content of a {@link DatabaseResourceBundle} from {@link #DEFAULT_TABLE_NAME}
  * by using DEFAULT_LOAD_QUERY via {@link java.sql.PreparedStatement}
  * </p>
  *
  * <p>
  * You can override {@link #DEFAULT_LOAD_QUERY} and {@link #DEFAULT_NEEDS_RELOAD_QUERY} by using constructor
- * {@link com.kodgemisi.cigdem.databaseresourcbundle.DefaultBundleContentLoaderStrategy#DefaultBundleContentLoaderStrategy(javax.sql.DataSource, String, String)}.
+ * {@link DefaultBundleContentLoaderStrategy#DefaultBundleContentLoaderStrategy(javax.sql.DataSource, String, String)}.
  * See each constructor's javadoc for more information.
  * </p>
  * <p>

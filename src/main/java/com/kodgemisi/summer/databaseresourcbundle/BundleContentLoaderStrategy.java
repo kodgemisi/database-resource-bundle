@@ -9,7 +9,7 @@
  * the Mozilla Public License, v. 2.0.
  */
 
-package com.kodgemisi.cigdem.databaseresourcbundle;
+package com.kodgemisi.summer.databaseresourcbundle;
 
 import lombok.NonNull;
 
@@ -18,12 +18,12 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 /**
- * Strategy for loading contents of {@link com.kodgemisi.cigdem.databaseresourcbundle.DatabaseResourceBundle} from database.
+ * Strategy for loading contents of {@link DatabaseResourceBundle} from database.
  *
  * Created on June, 2018
  *
  * @author destan
- * @see com.kodgemisi.cigdem.databaseresourcbundle.DefaultBundleContentLoaderStrategy
+ * @see DefaultBundleContentLoaderStrategy
  */
 public interface BundleContentLoaderStrategy {
 
@@ -57,7 +57,7 @@ public interface BundleContentLoaderStrategy {
 	boolean needsReload(String baseName, Locale locale, String format, @NonNull ResourceBundle bundle, long loadTime);
 
 	/**
-	 * This class is intended to be used in implementations of {@link com.kodgemisi.cigdem.databaseresourcbundle.BundleContentLoaderStrategy} interface to
+	 * This class is intended to be used in implementations of {@link BundleContentLoaderStrategy} interface to
 	 * easily extract parts of bundle name and to be used in related queries.
 	 */
 	class BundleMetaData {

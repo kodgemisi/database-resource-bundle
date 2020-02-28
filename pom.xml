@@ -4,9 +4,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.kodgemisi.cigdem</groupId>
+    <groupId>com.github.kodgemisi</groupId>
     <artifactId>database-resource-bundle</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.0-RC2</version>
 
     <name>Database Resource Bundle</name>
     <url>https://github.com/kodgemisi/database-resource-bundle</url>
@@ -22,7 +22,7 @@
         <maven-javadoc-plugin.version>3.0.1</maven-javadoc-plugin.version>
         <maven-jar-plugin.version>3.1.0</maven-jar-plugin.version>
 
-        <lombok.version>1.16.20</lombok.version>
+        <lombok.version>1.18.12</lombok.version>
     </properties>
 
     <dependencies>

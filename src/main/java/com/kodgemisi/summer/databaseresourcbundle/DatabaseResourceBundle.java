@@ -9,9 +9,7 @@
  * the Mozilla Public License, v. 2.0.
  */
 
-package com.kodgemisi.cigdem.databaseresourcbundle;
-
-import sun.util.ResourceBundleEnumeration;
+package com.kodgemisi.summer.databaseresourcbundle;
 
 import javax.sql.DataSource;
 import java.util.Enumeration;
@@ -25,7 +23,7 @@ import java.util.ResourceBundle;
  * Created on May, 2018
  *
  * @author destan
- * @see com.kodgemisi.cigdem.databaseresourcbundle.BundleContentLoaderStrategy
+ * @see BundleContentLoaderStrategy
  */
 public class DatabaseResourceBundle extends ResourceBundle {
 

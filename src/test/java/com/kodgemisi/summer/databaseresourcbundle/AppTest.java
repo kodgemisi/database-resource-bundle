@@ -1,4 +1,4 @@
-package com.kodgemisi.cigdem.databaseresourcbundle;
+package com.kodgemisi.summer.databaseresourcbundle;
 
 import org.junit.Test;
 
